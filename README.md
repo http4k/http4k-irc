@@ -1,52 +1,30 @@
-# http4k + Heroku + Travis 
+# http4k demo: IRC 
 
-[![build status](https://travis-ci.org/http4k/http4k-heroku-travis-example-app.svg?branch=master)](https://travis-ci.org/http4k/http4k-heroku-travis-example-app.svg?branch=master)
+[![build status](https://travis-ci.org/daviddenton/http4k-demo-irc.svg?branch=master)](https://travis-ci.org/daviddenton/http4k-demo-irc.svg?branch=master)
 
-This application gets deployed to Heroku on every push to GitHub
+This is a simple IRC clone built with [**http4k**](https://http4k.org) and deployed to Heroku through a fully CD pipeline run on Travis. the full application is <100 lines of code (when imports are excluded).
 
-## Pre-requisites
+It uses the following [**http4k**](https://http4k.org) modules and features:
 
-You need to have installed:
-* [Heroku Toolbelt](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
-* [Travis CLI](https://github.com/travis-ci/travis.rb#installation)
+- http4k core `http4k-core`
+- Jetty server module `http4k-server-jetty`
+- Jetty webockets
+- Handlebars templating `http4k-template-handlebars`
 
-## Getting Started
+It is deployed into Heroku [**here**](http://http4k-demo-irc.herokuapp.com/).
 
-* Fork this repo
-* Configure [Travis](https://travis-ci.org) to build the new repo
-* Create your Heroku app:
+## In action:
 
-```bash
-heroku apps:create my-awesome-app
-```
-
-* Update the `app` entry in .travis.yml
-* Update the deployment credentials
-
-```bash
-travis encrypt $(heroku auth:token) --add deploy.api_key
-```
-
-* Commit and push your changes to GitHub:
-
-```bash
-git commit -am"Update travis config"
-git push origin master
-```
-
-This will automatically trigger a new build and deployment of your app.
+<img src="https://github.com/daviddenton/http4k-demo-irc/raw/master/screenshot.png"/>
 
 ## Running it locally
 
-```bash
-./gradlew stage
-heroku local web
+Required environment variables:
+```
+CREDENTIALS=<user>:<password>                   // for basic auth on the site
+S3_REGION=<s3-region>                           // eg. us-east-1
+AWS_CREDENTIALS=<awsAccessKey>:<awsSecretKey>   // AWS access key with full S3 access
+AWS_BUCKET=<bucket>                             // existing AWS bucket
 ```
 
-The app will be available on [http://localhost:5000](http://localhost:5000)
-
-## Deploying it manually
-
-```bash
-git push heroku master
-```
+Set the above environment variables and run the `S3BoxLauncher` class. The app will be available on [http://localhost:5000](http://localhost:5000)
