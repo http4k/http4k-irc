@@ -2,13 +2,12 @@ package org.http4k.demo
 
 import com.natpryce.hamkrest.equalTo
 import com.natpryce.hamkrest.should.shouldMatch
-import org.http4k.core.Status
 import org.http4k.testing.WsClient
 import org.http4k.websocket.WsMessage
 import org.junit.Test
 
 class NewUser(private val client: WsClient) {
-    fun leaves() = client.close(Status(1000, "normal"))
+    fun leaves() = client.close()
 
     fun sends(message: String) = client.send(WsMessage(message))
 
