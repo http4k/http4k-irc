@@ -20,10 +20,7 @@ It is deployed into Heroku [**here**](http://http4k-demo-irc.herokuapp.com/).
 
 Required environment variables:
 ```
-CREDENTIALS=<user>:<password>                   // for basic auth on the site
-S3_REGION=<s3-region>                           // eg. us-east-1
-AWS_CREDENTIALS=<awsAccessKey>:<awsSecretKey>   // AWS access key with full S3 access
-AWS_BUCKET=<bucket>                             // existing AWS bucket
+CREDENTIALS=<user>:<password>     // for basic auth on the site
 ```
 
-Set the above environment variables and run the `S3BoxLauncher` class. The app will be available on [http://localhost:5000](http://localhost:5000)
+Set the above environment variables and run the `IrcLauncher` class. The app will be available on [http://localhost:5000](http://localhost:5000)
