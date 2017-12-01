@@ -2,14 +2,13 @@
 
 [![build status](https://travis-ci.org/daviddenton/http4k-demo-irc.svg?branch=master)](https://travis-ci.org/daviddenton/http4k-demo-irc.svg?branch=master)
 
-This is a simple IRC clone built with [**http4k**](https://http4k.org) and deployed to Heroku through a fully CD pipeline run on Travis. the full application is <100 lines of code (when imports are excluded).
+This is a simple IRC clone built with [**http4k**](https://http4k.org) and deployed to Heroku through a fully CD pipeline run on Travis. the full application is 30 lines of code (when imports are excluded).
 
 It uses the following [**http4k**](https://http4k.org) modules and features:
 
 - http4k core `http4k-core`
+- Jetty unit-testable Websockets
 - Jetty server module `http4k-server-jetty`
-- Jetty webockets
-- Handlebars templating `http4k-template-handlebars`
 
 It is deployed into Heroku [**here**](http://http4k-demo-irc.herokuapp.com/).
 
