@@ -29,8 +29,8 @@ object IrcApp {
         fun newConnection(ws: Websocket) {
             val id = "user${userCounter.incrementAndGet()}"
             participants += id to ws
-            addMessage("$id joined")
             messages.map { WsMessage(it) }.forEach { ws.send(it) }
+            addMessage("$id joined")
             ws.onMessage {
                 addMessage("$id: ${it.bodyString()}")
             }

@@ -3,7 +3,7 @@ version '1.0-SNAPSHOT'
 
 buildscript {
     ext.kotlin_version = '1.2.0'
-    ext.http4k_version = '3.2.0'
+    ext.http4k_version = '3.2.1'
 
     repositories {
         mavenCentral()
@@ -32,6 +32,9 @@ dependencies {
 
     compile "org.http4k:http4k-core:$http4k_version"
     compile "org.http4k:http4k-server-jetty:$http4k_version"
+
+    testCompile "junit:junit:4.12"
+    testCompile "com.natpryce:hamkrest:1.4.2.0"
 }
 
 mainClassName = 'org.http4k.demo.IrcLauncherKt'
