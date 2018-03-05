@@ -7,8 +7,7 @@ import org.http4k.core.Credentials
 object Settings {
     val CREDENTIALS = Property("CREDENTIALS", String::toCredentials, Credentials::fromCredentials)
 
-    val defaults = ConfigurationTemplate()
-        .requiring(CREDENTIALS)
+    val defaults = ConfigurationTemplate().requiring(CREDENTIALS)
 }
 
 fun Credentials.fromCredentials() = "$user:$password"
