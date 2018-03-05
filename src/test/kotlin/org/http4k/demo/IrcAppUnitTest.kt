@@ -10,5 +10,5 @@ class IrcAppUnitTest : IrcContract() {
     private val credentials = Credentials("user", "password")
     private val app = IrcApp(Settings.defaults.withProp(CREDENTIALS, credentials).reify())
 
-    override fun newUser(): NewUser = NewUser(app.testWsClient(Request(GET, "/ws"))!!)
+    override fun newUser() = NewUser(app.testWsClient(Request(GET, "/ws"))!!)
 }

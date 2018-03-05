@@ -12,14 +12,12 @@ import org.junit.Before
 class IrcAppServerTest : IrcContract() {
     override fun newUser() = NewUser(WebsocketClient.blocking(Uri.of("ws://localhost:8000/ws")))
 
-    private val server = IrcApp(Settings.defaults
-        .withProp(CREDENTIALS, Credentials("user", "password")).reify()
-    ).asServer(Jetty(8000))
+    private val config = Settings.defaults.withProp(CREDENTIALS, Credentials("user", "password")).reify()
+
+    private val server = IrcApp(config).asServer(Jetty(8000))
 
     @Before
-    fun before() {
-        server.start()
-    }
+    fun before() = server.start()
 
     @After
     fun after() = server.stop()
