@@ -17,7 +17,9 @@ class IrcAppServerTest : IrcContract() {
     private val server = IrcApp(config).asServer(Jetty(8000))
 
     @Before
-    fun before() = server.start()
+    fun before() {
+        server.start()
+    }
 
     @After
     fun after() = server.stop()
