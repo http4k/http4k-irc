@@ -40,10 +40,10 @@ object IrcApp {
             }
         }
 
-        return PolyHandler(
-            ServerFilters.BasicAuth("http4k", config[CREDENTIALS])
-                .then(static(ResourceLoader.Classpath())),
-            websockets("/ws" bind ::newConnection)
-        )
+        val http = ServerFilters.BasicAuth("http4k", config[CREDENTIALS])
+            .then(static(ResourceLoader.Classpath()))
+        val ws = websockets("/ws" bind ::newConnection)
+
+        return PolyHandler(http, ws)
     }
 }
