@@ -2,7 +2,9 @@ var socket = null;
 
 function connect() {
     console.log("Begin connect");
-    socket = new WebSocket("ws://" + window.location.host + "/ws");
+
+    var protocol = document.location.href.startsWith('https') ? 'wss' : 'ws';
+    socket = new WebSocket(protocol + "://" + window.location.host + "/ws");
 
     socket.onerror = function() {
         console.log("socket error");
