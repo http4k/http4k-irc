@@ -2,7 +2,7 @@ package org.http4k.demo
 
 import com.natpryce.hamkrest.equalTo
 import com.natpryce.hamkrest.should.shouldMatch
-import org.http4k.testing.WsClient
+import org.http4k.websocket.WsClient
 import org.http4k.websocket.WsMessage
 import org.junit.Test
 

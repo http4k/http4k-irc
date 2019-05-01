@@ -22,5 +22,7 @@ class IrcAppServerTest : IrcContract() {
     }
 
     @After
-    fun after() = server.stop()
+    fun after() {
+        server.stop()
+    }
 }
