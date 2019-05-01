@@ -7,9 +7,9 @@ This is a simple IRC clone built with [**http4k**](https://http4k.org) and deplo
 It uses the following [**http4k**](https://http4k.org) modules and features:
 
 - http4k core `http4k-core`
-- Jetty unit-testable Websockets
-- Jetty server module `http4k-server-jetty`
-- Shared behavioural contracts for Unit (offline) and Server (online) testing of Sebsockets. Ie. 1 contract, reusable across testing scopes.
+- Jetty server module `http4k-server-jetty` including unit-testable Websockets
+- http4k core `http4k-cloudnative` for configuration
+- Shared behavioural contracts for Unit (offline) and Server (online) testing of Websockets. Ie. 1 contract, reusable across testing scopes.
 
 It is deployed into Heroku [**here**](http://http4k-demo-irc.herokuapp.com/).
 

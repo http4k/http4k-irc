@@ -1,8 +1,7 @@
 package org.http4k.demo
 
-import io.github.konfigur8.Configuration
+import org.http4k.cloudnative.env.Environment
 import org.http4k.core.then
-import org.http4k.demo.Settings.CREDENTIALS
 import org.http4k.filter.ServerFilters
 import org.http4k.routing.ResourceLoader
 import org.http4k.routing.bind
@@ -14,9 +13,8 @@ import org.http4k.websocket.WsMessage
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 
-
 object IrcApp {
-    operator fun invoke(config: Configuration): PolyHandler {
+    operator fun invoke(env: Environment): PolyHandler {
         val userCounter = AtomicInteger()
         val messages = mutableListOf<String>()
         val participants = ConcurrentHashMap<String, Websocket>()
@@ -40,7 +38,7 @@ object IrcApp {
             }
         }
 
-        val http = ServerFilters.BasicAuth("http4k", config[CREDENTIALS])
+        val http = ServerFilters.BasicAuth("http4k", env[CREDENTIALS])
             .then(static(ResourceLoader.Classpath()))
         val ws = websockets("/ws" bind ::newConnection)
 

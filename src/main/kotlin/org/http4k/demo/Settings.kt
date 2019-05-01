@@ -1,14 +1,9 @@
 package org.http4k.demo
 
-import io.github.konfigur8.ConfigurationTemplate
-import io.github.konfigur8.Property
+import org.http4k.cloudnative.env.EnvironmentKey
 import org.http4k.core.Credentials
 
-object Settings {
-    val CREDENTIALS = Property("CREDENTIALS", String::toCredentials, Credentials::fromCredentials)
+val CREDENTIALS = EnvironmentKey.map(String::toCredentials, Credentials::fromCredentials).required("CREDENTIALS")
 
-    val defaults = ConfigurationTemplate().requiring(CREDENTIALS)
-}
-
-fun Credentials.fromCredentials() = "$user:$password"
-fun String.toCredentials() = split(":").run { Credentials(get(0), get(1)) }
+private fun Credentials.fromCredentials() = "$user:$password"
+private fun String.toCredentials() = split(":").run { Credentials(get(0), get(1)) }

@@ -1,18 +1,22 @@
 package org.http4k.demo
 
+import com.natpryce.hamkrest.assertion.assertThat
 import com.natpryce.hamkrest.equalTo
-import com.natpryce.hamkrest.should.shouldMatch
 import org.http4k.websocket.WsClient
 import org.http4k.websocket.WsMessage
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class NewUser(private val client: WsClient) {
     fun leaves() = client.close()
 
     fun sends(message: String) = client.send(WsMessage(message))
 
-    fun receives(vararg messages: String) = client.received()
-        .take(messages.size).map(WsMessage::bodyString).toList() shouldMatch equalTo(messages.toList())
+    fun receives(vararg messages: String) =
+        assertThat(client.received()
+            .take(messages.size)
+            .map(WsMessage::bodyString)
+            .toList(), equalTo(messages.toList())
+        )
 }
 
 abstract class IrcContract {
