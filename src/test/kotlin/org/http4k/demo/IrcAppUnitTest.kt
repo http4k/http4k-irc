@@ -7,8 +7,8 @@ import org.http4k.core.Request
 import org.http4k.testing.testWsClient
 
 class IrcAppUnitTest : IrcContract() {
-    private val credentials = Credentials("user", "password")
-    private val app = IrcApp(Environment.defaults(CREDENTIALS of credentials))
+  private val credentials = Credentials("user", "password")
+  private val app = IrcApp(Environment.defaults(CREDENTIALS of credentials))
 
-    override fun newUser() = NewUser(app.testWsClient(Request(GET, "/ws"))!!)
+  override fun newUser() = NewUser(app.testWsClient(Request(GET, "/ws")))
 }

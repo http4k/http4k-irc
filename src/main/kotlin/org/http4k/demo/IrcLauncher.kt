@@ -5,6 +5,6 @@ import org.http4k.server.Jetty
 import org.http4k.server.asServer
 
 fun main(args: Array<String>) {
-    val port = if (args.isNotEmpty()) args[0].toInt() else 5000
-    IrcApp(Environment.ENV).asServer(Jetty(port)).start().block()
+  val port = if (args.isNotEmpty()) args[0].toInt() else 5000
+  IrcApp(Environment.ENV).asServer(Jetty(port)).start().block()
 }

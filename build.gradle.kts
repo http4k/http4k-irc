@@ -1,45 +1,47 @@
-group 'org.http4k'
-version '1.0-SNAPSHOT'
-
-buildscript {
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
+plugins {
+    kotlin("jvm") version "1.6.10"
+    application
 }
 
-apply plugin: 'java'
-apply plugin: 'kotlin'
-apply plugin: 'application'
+group = "org.http4k"
+version = "1.0-SNAPSHOT"
 
-sourceCompatibility = JavaVersion.VERSION_11
-
-repositories {
-    mavenCentral()
-    jcenter()
+kotlin {
+    jvmToolchain {
+        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(11))
+    }
 }
 
 dependencies {
-    implementation platform("org.http4k:http4k-bom:$http4k_version")
-    implementation "org.http4k:http4k-core"
-    implementation "org.http4k:http4k-cloudnative"
-    implementation "org.http4k:http4k-server-jetty"
+    val http4kVersion = "4.17.6.0"
+    val junitVersion = "5.8.2"
 
-    testImplementation "org.http4k:http4k-testing-hamkrest"
-    testImplementation "org.http4k:http4k-client-websocket"
+    implementation(platform("org.http4k:http4k-bom:$http4kVersion"))
+    implementation("org.http4k:http4k-core")
+    implementation("org.http4k:http4k-cloudnative")
+    implementation("org.http4k:http4k-server-jetty")
 
-    testImplementation platform("org.junit:junit-bom:$junit_version")
-    testImplementation "org.junit.jupiter:junit-jupiter-api"
-    testImplementation "org.junit.jupiter:junit-jupiter-engine"
+    testImplementation("org.http4k:http4k-testing-hamkrest")
+    testImplementation("org.http4k:http4k-client-websocket")
+
+    testImplementation(platform("org.junit:junit-bom:$junitVersion"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher") {
+        because("Only needed to run tests in a version of IntelliJ IDEA that bundles older versions")
+    }
 }
 
-test {
+tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-mainClassName = 'org.http4k.demo.IrcLauncherKt'
+application {
+    mainClass.set("org.http4k.demo.IrcLauncherKt")
+}
 
-task stage(dependsOn: ['installDist'])
+//task stage(dependsOn: ['installDist'])
+
+tasks.wrapper {
+    gradleVersion = "7.3.3"
+    distributionType = Wrapper.DistributionType.ALL
+}

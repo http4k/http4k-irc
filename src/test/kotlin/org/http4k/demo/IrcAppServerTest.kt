@@ -10,19 +10,19 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 
 class IrcAppServerTest : IrcContract() {
-    override fun newUser() = NewUser(WebsocketClient.blocking(Uri.of("ws://localhost:8000/ws")))
+  override fun newUser() = NewUser(WebsocketClient.blocking(Uri.of("ws://localhost:8000/ws")))
 
-    private val config = Environment.defaults(CREDENTIALS of Credentials("user", "password"))
+  private val config = Environment.defaults(CREDENTIALS of Credentials("user", "password"))
 
-    private val server = IrcApp(config).asServer(Jetty(8000))
+  private val server = IrcApp(config).asServer(Jetty(8000))
 
-    @BeforeEach
-    fun before() {
-        server.start()
-    }
+  @BeforeEach
+  fun before() {
+    server.start()
+  }
 
-    @AfterEach
-    fun after() {
-        server.stop()
-    }
+  @AfterEach
+  fun after() {
+    server.stop()
+  }
 }
