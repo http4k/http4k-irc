@@ -1,1 +1,1 @@
-web: build/install/http4k-demo-irc/bin/http4k-demo-irc $PORT
+web: build/install/http4k-irc/bin/http4k-irc $PORT

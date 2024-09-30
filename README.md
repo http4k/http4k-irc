@@ -15,7 +15,7 @@ It is deployed into Heroku [**here**](http://http4k-demo-irc.herokuapp.com/).
 
 ## In action:
 
-<img src="https://github.com/daviddenton/http4k-demo-irc/raw/master/screenshot.png"/>
+<img src="https://github.com/http4k/http4k-irc/raw/master/screenshot.png"/>
 
 ## Running it locally
 

@@ -2,4 +2,9 @@
 .idea/
 *.iml
 build/
+out/
 .DS_Store
+local.properties
+lambda.properties
+/app/src/main/generated/
+*.env
